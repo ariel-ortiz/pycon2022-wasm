@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pyodide Test</title>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.20.0/full/pyodide.js">
+    </script>
+  </head>
+  <body>
+    <h1>Pyodide Test</h1>
+    <p id="id_1"><em>Wait for it...</em></p>
+    <p id="id_2"></p>
+    <p id="id_3"></p>
+    </ul>
+    <script>
+      async function main(){
+        let pyodide = await loadPyodide();
+        let version = pyodide.runPython(`
+            import sys
+            'Python ' + sys.version.split()[0]
+            `);
+        let now = pyodide.runPython(`
+            from datetime import datetime
+            now = datetime.now()
+            result = now.isoformat()
+            result
+            `);
+        let quote = pyodide.runPython(`
+            import random
+            oneliners = [
+                'A data scientist is a person who is better at '
+                    'statistics than any programmer and better at '
+                    'programming than any statistician.',
+                "!false (It's funny because it's true.)",
+                'Why do programmers always mix up Christmas and '
+                    'Halloween? Because Dec 25 is Oct 31.',
+                'Have you tried turning it off and on again?'
+            ]
+            random.choice(oneliners)
+            `)
+        document.getElementById("id_1").innerHTML = version;
+        document.getElementById("id_2").innerHTML = now;
+        document.getElementById("id_3").innerHTML = quote;
+        }
+      main();
+    </script>
+  </body>
+</html>
