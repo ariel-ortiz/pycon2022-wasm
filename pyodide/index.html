@@ -12,7 +12,7 @@
     <p id="id_3"></p>
     </ul>
     <script>
-      async function main(){
+      async function main() {
         let pyodide = await loadPyodide();
         let version = pyodide.runPython(`
             import sys
@@ -40,7 +40,8 @@
         document.getElementById("id_1").innerHTML = version;
         document.getElementById("id_2").innerHTML = now;
         document.getElementById("id_3").innerHTML = quote;
-        }
+      }
+      
       main();
     </script>
   </body>
