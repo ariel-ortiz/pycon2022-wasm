@@ -27,8 +27,10 @@ def make_import_object(store):
         print(chr(x), end='')
 
     def _input() -> int:
-        x = input()
-        return int(x) if x.isdigit() else 0
+        try:
+            return int(input())
+        except ValueError:
+            return 0
 
     def _print(x: int):
         print(x, end=' ')
